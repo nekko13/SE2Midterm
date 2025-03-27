@@ -16,11 +16,14 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public List<Product> getProductsByCategory(String category) {
-        return productRepository.findByCategory(category);
+    public List<Product> getProductsByCategory(String productType) {
+        return productRepository.findByProductType(productType);
     }
 
     public Product saveProduct(Product product) {
         return productRepository.save(product);
+    }
+    public List<Product> getProductsWithOriginalPrice() {
+        return productRepository.findByOriginalPriceIsNotNull();
     }
 }

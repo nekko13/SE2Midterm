@@ -16,6 +16,12 @@ public class Product {
     private double price;
 
     @Column
+    private Double originalPrice;
+
+    @Column
+    private Integer discountPercentage;
+
+    @Column
     private String source;
 
     @Column
@@ -24,11 +30,14 @@ public class Product {
     @Column
     private String size;
 
+    @Column(name = "product_type")
+    private String productType;
+
     @Column
-    private String category;
+    private String description;
 
     @Column(name = "image_path")
-    private String imagePath;  // Thay đổi từ imagePath sang image_path để match database column
+    private String imagePath;
 
     // Constructors
     public Product() {}
@@ -58,6 +67,22 @@ public class Product {
         this.price = price;
     }
 
+    public Double getOriginalPrice() {
+        return originalPrice;
+    }
+
+    public void setOriginalPrice(Double originalPrice) {
+        this.originalPrice = originalPrice;
+    }
+
+    public Integer getDiscountPercentage() {
+        return discountPercentage;
+    }
+
+    public void setDiscountPercentage(Integer discountPercentage) {
+        this.discountPercentage = discountPercentage;
+    }
+
     public String getSource() {
         return source;
     }
@@ -82,12 +107,20 @@ public class Product {
         this.size = size;
     }
 
-    public String getCategory() {
-        return category;
+    public String getProductType() {
+        return productType;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setProductType(String productType) {
+        this.productType = productType;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getImagePath() {

@@ -8,18 +8,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-
     @Autowired
     private ProductService productService;
 
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("dealProducts", productService.getProductsByCategory("Deals"));
-        model.addAttribute("shopNowProducts", productService.getProductsByCategory("Shop Now"));
+        // Fetch all products with original_price (which indicates a deal)
+        model.addAttribute("dealProducts", productService.getProductsWithOriginalPrice());
+        model.addAttribute("shopNowProducts", productService.getProductsByCategory("Kitchen Appliances"));
         return "Home/index";
-    }
-    @GetMapping("/cart")
-    public String cart() {
-        return "Home/cart";  // Đảm bảo đúng đường dẫn đến file cart.html
     }
 }

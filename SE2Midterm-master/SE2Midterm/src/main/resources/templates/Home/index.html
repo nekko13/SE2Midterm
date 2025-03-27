@@ -168,11 +168,9 @@
 
 <!-- Similar changes for Shop Now section -->
 
-<!-- Shop Now Section -->
 <section class="shop-now-section">
     <h2 class="shop-now-title">Shop Now!!!</h2>
     <div class="shop-now-container">
-        <!-- Sử dụng Thymeleaf để lặp qua danh sách sản phẩm -->
         <div th:each="product : ${shopNowProducts}"
              class="shop-now-card"
              th:attr="data-title=${product.title},
@@ -180,7 +178,7 @@
                      data-source=${product.source},
                      data-weight=${product.weight},
                      data-size=${product.size},
-                     data-category=${product.category}">
+                     data-category=${product.productType}">
             <img th:src="${product.imagePath}"
                  th:alt="${product.title}"
                  class="shop-now-image">
