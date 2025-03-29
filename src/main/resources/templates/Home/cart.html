@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - E-Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/cart.css}">
+</head>
+<body>
+<!-- Top bar and header from index.html -->
+<div class="top-bar">
+    <a href="#">Sell on E-Shop</a>
+    <a href="#">Help & Contact</a>
+</div>
+
+<header class="main-header">
+    <div class="left-section">
+        <a href="/" class="logo">E-Shop</a>
+    </div>
+
+    <div class="right-nav">
+        <a href="/login">Log In</a>
+        <a href="/cart">🛒 Cart</a>
+    </div>
+</header>
+
+<div class="cart-container">
+    <div class="cart-header">
+        <h1>Your Shopping Cart</h1>
+        <a href="/" class="cart-continue-shopping">Continue Shopping</a>
+    </div>
+
+    <div th:if="${cart.items.isEmpty()}" class="cart-empty">
+        <p>Your cart is currently empty.</p>
+        <a href="/" class="btn-checkout">Start Shopping</a>
+    </div>
+
+    <div th:unless="${cart.items.isEmpty()}" class="cart-content">
+        <div class="cart-items">
+            <div th:each="item : ${cart.items}" class="cart-item">
+                <img th:src="${item.product.imagePath}" th:alt="${item.product.title}" class="cart-item-image">
+                <div class="cart-item-details">
+                    <h3 th:text="${item.product.title}">Product Name</h3>
+                    <p th:text="${'$' + item.product.price}">Product Price</p>
+                </div>
+                <div class="cart-item-quantity">
+                    <button class="quantity-btn">-</button>
+                    <span th:text="${item.quantity}">1</span>
+                    <button class="quantity-btn">+</button>
+                </div>
+                <div th:text="${'$' + (item.product.price * item.quantity)}" class="cart-item-total">$99.99</div>
+                <a class="cart-item-remove">Remove</a>
+            </div>
+        </div>
+
+        <div class="cart-summary">
+            <div class="cart-summary-details">
+                <p>Subtotal: <span th:text="${'$' + cart.totalPrice}">$99.99</span></p>
+                <p>Tax (10%): <span th:text="${'$' + (cart.totalPrice * 0.1)}">$9.99</span></p>
+                <p class="cart-total">Total: <span th:text="${'$' + (cart.totalPrice * 1.1)}">$109.98</span></p>
+                <a href="#" class="btn-checkout">Proceed to Checkout</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
